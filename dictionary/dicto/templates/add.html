@@ -30,7 +30,7 @@
         <h1><b>Welcome to Our Dictionary</b></h1>
     </div>
     <div class="container-fluid">
-        <form class="row g-3" method="POST" action="">
+        <form enctype="multipart/form-data" class="row g-3" method="POST" action="">
         {% csrf_token %}
             <div class="col-12">
                 <label for="word" class="form-label">English ka Word :</label>
@@ -43,6 +43,14 @@
             <div class="col-12">
                 <label for="use" class="form-label">Uses :</label>
                 <input type="text" class="form-control" id="use" name="use" placeholder="Uses">
+            </div>
+            <div class="col-12">
+                <label for="category" class="form-label">Category :</label>
+                <input type="text" class="form-control" id="category" name="category" placeholder="Uses">
+            </div>
+            <div class="col-12">
+                <label for="image" class="form-label">Image Upload :</label>
+                <input type="file" class="form-control" id="image" name="image" placeholder="Related Word">
             </div>
             <div class="col-12">
                 <label for="rword" class="form-label">Related Word :</label>

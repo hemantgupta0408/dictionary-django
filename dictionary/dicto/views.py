@@ -6,9 +6,18 @@ from dicto.models import Words
 def base(request):
     return render(request, 'base.html')
 
-def index(request):
+def index(request,w):
     if request.method =="POST":
         w = request.POST.get("word").lower()
+        l = Words.objects.filter(eword=w).exists()
+        if l:
+            word = Words.objects.get(eword=w)
+            return render(request,'index.html',{"word":word})
+        else:
+            messages.success(request,"Word is not Present in Dictionary ! ")
+            return redirect('/')
+
+    else:
         l = Words.objects.filter(eword=w).exists()
         if l:
             word = Words.objects.get(eword=w)
@@ -24,9 +33,11 @@ def edit(request , eword):
     if request.method == "POST":
         hword = request.POST.get("hword").lower()
         uses = request.POST.get("use").lower()
+        category = request.POST.get("category")
         rword = request.POST.get("rword").lower()
         word.hword = hword
         word.uses = uses
+        word.category = category
         word.rword = rword
         word.save()
         messages.success(request , "Word Edit Successfully !")
@@ -46,7 +57,9 @@ def add(request):
             w.eword = request.POST.get("word").lower()
             w.hword = request.POST.get("hword").lower()
             w.uses = request.POST.get("use").lower()
-            w.rword = request.POST.get("rword").lower()
+            w.category = request.POST.get("category")
+            w.image = request.FILES.get('image')
+            w.rword = request.POST.get("rword").lower().split(",")
             w.save()
             messages.success(request,"Word Added Succesfully ! ")
             return render(request,'add.html')
