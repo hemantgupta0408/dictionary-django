@@ -59,7 +59,7 @@ def add(request):
             w.uses = request.POST.get("use").lower()
             w.category = request.POST.get("category")
             w.image = request.FILES.get('image')
-            w.rword = request.POST.get("rword").lower().split(",")
+            w.rword = request.POST.get("rword").lower()
             w.save()
             messages.success(request,"Word Added Succesfully ! ")
             return render(request,'add.html')

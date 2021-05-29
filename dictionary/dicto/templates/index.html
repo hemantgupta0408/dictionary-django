@@ -30,20 +30,21 @@
                 readonly>
             </div>
             <div class="col-12">
+                <label for="category" class="form-label">Category :</label>
+                <input type="text" class="form-control" id="category" name="category"  value="{{word.category}}" readonly>
+            </div>
+            <div class="col-12">
                 <label for="use" class="form-label">Uses :</label>
                 <input type="text" class="form-control" id="use" name="use" placeholder="Uses" value="{{word.uses}}" readonly>
             </div>
-            <div class="col-12">
-                <label for="category" class="form-label">Category :</label>
-                <input type="text" class="form-control" id="category" name="category" placeholder="Uses" value="{{word.category}}" readonly>
-            </div>
+            
             <div class="col-12">
                 <label for="rword" class="form-label">Related Word :</label>
                 <input type="text" class="form-control" id="rword" name="rword" placeholder="Related Word" value="{{word.rword}}" readonly>
             </div>
             <a href="/index/{{word.rword}}">{{word.rword}}</a>
-            <img src="/{{word.image}}" alt="{{word.eword}} ki image h idhar">
         </form>
+        <img src="{{word.image.url}}" alt="{{word.image}} ki image h idhar">
         <div>
         <div class="col-md-4 my-2">
             <a class="btn btn-outline-warning" href="/edit/{{word.eword}}" role="button">Edit</a>

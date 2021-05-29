@@ -7,7 +7,7 @@ class Words(models.Model):
     hword = models.CharField(max_length=30)
     uses = models.CharField(max_length=120)
     category = models.CharField(max_length=80)
-    image = models.ImageField(upload_to="upload/")
+    image = models.ImageField(upload_to="media/")
     rword = models.CharField(max_length=30)
     
     def __str__(self):
