@@ -42,9 +42,13 @@
                 <label for="rword" class="form-label">Related Word :</label>
                 <input type="text" class="form-control" id="rword" name="rword" placeholder="Related Word" value="{{word.rword}}" readonly>
             </div>
-            <a href="/index/{{word.rword}}">{{word.rword}}</a>
+            {% if word.rword %}
+            {% for i in word.rword %}
+            <a href="/index/{{i}}">{{i}}</a>
+            {% endfor %}
+            {% endif %}
         </form>
-        <img src="{{word.image.url}}" alt="{{word.image}} ki image h idhar">
+
         <div>
         <div class="col-md-4 my-2">
             <a class="btn btn-outline-warning" href="/edit/{{word.eword}}" role="button">Edit</a>

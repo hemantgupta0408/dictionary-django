@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
 from django.contrib import messages
 from dicto.models import Words
+import ast
 
 # Create your views here.
 def base(request):
@@ -12,6 +13,11 @@ def index(request,w):
         l = Words.objects.filter(eword=w).exists()
         if l:
             word = Words.objects.get(eword=w)
+            word.rword = ast.literal_eval(word.rword)
+            for i in word.rword:
+                print(i)
+            print(word.rword)
+   
             return render(request,'index.html',{"word":word})
         else:
             messages.success(request,"Word is not Present in Dictionary ! ")
@@ -21,6 +27,7 @@ def index(request,w):
         l = Words.objects.filter(eword=w).exists()
         if l:
             word = Words.objects.get(eword=w)
+            word.rword = ast.literal_eval(word.rword)
             return render(request,'index.html',{"word":word})
         else:
             messages.success(request,"Word is not Present in Dictionary ! ")
@@ -46,8 +53,8 @@ def edit(request , eword):
     
 def add(request):
     if request.method == "POST":
-        eword = request.POST.get("word").lower()
-        l = Words.objects.filter(eword=eword).exists()
+        cat = request.POST.get("word").lower()
+        l = Words.objects.filter(category=cat).exists()
         if l:
             messages.success(request ,"Word already in Dictionary !")
             return redirect("/")
@@ -59,7 +66,11 @@ def add(request):
             w.uses = request.POST.get("use").lower()
             w.category = request.POST.get("category")
             w.image = request.FILES.get('image')
-            w.rword = request.POST.get("rword").lower()
+            rw = request.POST.get("rword").lower()
+            w.rword = rw.split(',')
+            for i in w.rword:
+                print(i)
+            print(type(w.rword))
             w.save()
             messages.success(request,"Word Added Succesfully ! ")
             return render(request,'add.html')
