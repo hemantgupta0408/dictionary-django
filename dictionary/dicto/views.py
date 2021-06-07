@@ -42,8 +42,8 @@ def index1(request,w,cat):
     word.rword = ast.literal_eval(word.rword)
     return render(request,'index.html',{"word":word})
 
-def edit(request , eword):
-    word = Words.objects.get(eword=eword)
+def edit(request ,eword,cat):
+    word = Words.objects.get(eword=eword,category=cat)
     if request.method == "POST":
         hword = request.POST.get("hword").lower()
         uses = request.POST.get("use").lower()
@@ -91,8 +91,8 @@ def show(request):
     word = Words.objects.all()
     return render(request,'show.html',{"word":word})
 
-def delete(request,eword):
-    word = Words.objects.get(eword=eword)
+def delete(request,eword,cat):
+    word = Words.objects.get(eword=eword,category=cat)
     word.delete()
     messages.success(request,"Word Delete Successfully ! ")
     return redirect("/")

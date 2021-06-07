@@ -24,9 +24,9 @@ urlpatterns = [
     path('index/<str:w>', views.index),
     path('index/<str:w>/<str:cat>', views.index1),
     path('add/', views.add),
-    path('edit/<str:eword>', views.edit),
+    path('edit/<str:eword>/<str:cat>', views.edit),
     path('show/', views.show),
-    path('delete/<str:eword>', views.delete),
+    path('delete/<str:eword>/<str:cat>', views.delete),
 ]
 
 
