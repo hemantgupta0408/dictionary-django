@@ -38,15 +38,20 @@
                 <input type="text" class="form-control" id="use" name="use" placeholder="Uses" value="{{word.uses}}" readonly>
             </div>
             
-            <div class="col-12">
-                <label for="rword" class="form-label">Related Word :</label>
-                <input type="text" class="form-control" id="rword" name="rword" placeholder="Related Word" value="{{word.rword}}" readonly>
-            </div>
+            <div class="col-12" >
+                <label for="rword" class="form-label">Related Word :</label><br>
+            
             {% if word.rword %}
             {% for i in word.rword %}
-            <a href="/index/{{i}}">{{i}}</a>
+            <a style="border: 2px solid gray;border-radius: 6px; display: block;" href="/index/{{i}}">{{i}}</a>
             {% endfor %}
             {% endif %}
+        </div>
+            <div class="col-12">
+                {% if word.image %}  
+                    <img src="{{word.image.url}}" alt="">
+                {% endif %}
+            </div>
         </form>
 
         <div>
